@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import IntlWrapper from '../client/modules/Intl/IntlWrapper';
 
+
 // Webpack Requirements
 import webpack from 'webpack';
 import config from '../webpack.config.dev';
@@ -40,7 +41,6 @@ import lanes from './routes/lane.routes';
 import dummyData from './dummyData';
 import serverConfig from './config';
 import notes from './routes/note.routes';
-
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
 
@@ -62,7 +62,6 @@ app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist/client')));
 app.use('/api', lanes);
 app.use('/api', notes);
-
 // Render Initial HTML
 const renderFullPage = (html, initialState) => {
   const head = Helmet.rewind();

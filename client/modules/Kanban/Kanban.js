@@ -1,26 +1,40 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import Lanes from '../Lane/Lanes';
+import styles from '../Lane/Lane.css';
+import { createLaneRequest, fetchLanes } from '../Lane/LaneActions';
+import { createNoteRequest } from '../Note/NoteActions';
 
-// Import Style
-import styles from './Kanban.css';
 
-class Kanban extends Component {
-  render() {
-    return (
-    );
-  }
+const Kanban = (props) => {
+  return (
+    <div>
+      <Lanes lanes={props.lanes} />
+      <button
+
+        onClick={() => props.createLane({
+          name: 'New lane'
+        })}
+      >Add Lane</button>
+    </div>
+  )
 }
 
-const mapStateToProps = (state) => {
-  return {};
-};
+// Kanban.need = [() => {return fetchLanes()}];
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
+const mapStateToProps = (state) => ({
+  lanes: Object.values(state.lanes)
+});
+
+const mapDispatchToProps = {
+
+  createLane: createLaneRequest,
+  addNote: createNoteRequest,
 };
 
 Kanban.propTypes = {
+  lanes: PropTypes.array,
+  createLane: PropTypes.func
 };
 
 export default connect(
